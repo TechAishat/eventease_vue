@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/eventease_vue/' : '/',
+  base: '/',
   plugins: [
     vue({
       template: {
@@ -13,7 +13,6 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
-  // Update publicDir to use the assets directory
   publicDir: 'assets',
   resolve: {
     alias: {
@@ -32,8 +31,18 @@ export default defineConfig(({ mode }) => ({
     assetsDir: 'assets',
     sourcemap: mode !== 'production',
     minify: 'esbuild',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name.split('.').at(1);
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            extType = 'img';
+          }
+          return `assets/${extType}/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
         manualChunks: {
           vue: ['vue', 'vue-router', 'pinia'],
         },

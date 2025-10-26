@@ -16,16 +16,16 @@ const router = createRouter({
       component: Landing
     },
     {
-      path: '/',
+      path: '/app',
       component: AppLayout,
       children: [
         {
-          path: 'auth/login',
+          path: 'login',
           name: 'login',
           component: Login
         },
         {
-          path: 'auth/signup',
+          path: 'signup',
           name: 'signup',
           component: Signup
         },
