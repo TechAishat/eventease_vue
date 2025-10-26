@@ -7,6 +7,10 @@
         <p style="color: #4a5272">Organize tickets with clarity and speed.</p>
       </div>
       <form class="form-grid" novalidate @submit.prevent="handleSubmit">
+        <!-- Form-level error message -->
+        <div v-if="errors.form" class="form-error" style="grid-column: 1 / -1; color: #ef4444; margin-bottom: 1rem;">
+          {{ errors.form }}
+        </div>
         <div class="form-field">
           <label for="signup-name">Full name *</label>
           <input
@@ -16,6 +20,7 @@
             :class="{ 'input-error': errors.name }"
             autocomplete="name"
             required
+            @input="clearError('name')"
           />
           <span v-if="errors.name" class="error-text">{{ errors.name }}</span>
         </div>
@@ -29,6 +34,7 @@
             :class="{ 'input-error': errors.email }"
             autocomplete="email"
             required
+            @input="clearError('email')"
           />
           <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
         </div>
@@ -42,6 +48,7 @@
             :class="{ 'input-error': errors.password }"
             autocomplete="new-password"
             required
+            @input="clearError('password')"
           />
           <span v-if="errors.password" class="error-text">{{ errors.password }}</span>
         </div>
@@ -54,6 +61,7 @@
             type="password"
             :class="{ 'input-error': errors.confirmPassword }"
             required
+            @input="clearError('confirmPassword')"
           />
           <span v-if="errors.confirmPassword" class="error-text">{{ errors.confirmPassword }}</span>
         </div>
@@ -116,6 +124,16 @@ const validate = () => {
   return nextErrors;
 };
 
+// Clear error when user starts typing in any field
+const clearError = (field) => {
+  if (errors[field]) {
+    delete errors[field];
+  }
+  if (errors.form) {
+    delete errors.form;
+  }
+};
+
 const handleSubmit = async () => {
   const validationErrors = validate();
   if (Object.keys(validationErrors).length > 0) return;
@@ -128,17 +146,16 @@ const handleSubmit = async () => {
       password: form.password
     });
     
-    // Show success message
-    toastStore.add({
-      type: 'success',
-      message: 'Account created successfully! Welcome aboard!',
-      duration: 3000
-    });
-    
-    // Redirect to dashboard
+    // Show success message and redirect
+    toastStore.showSuccess('Success', 'Account created successfully! Welcome aboard!');
     router.push('/app/dashboard');
   } catch (error) {
-    toastStore.showError('Signup failed', error.message ?? 'Unable to create account.');
+    console.error('Signup error:', error);
+    const errorMessage = error.message || 'Unable to create account. Please try again.';
+    toastStore.showError('Signup Failed', errorMessage);
+    
+    // Set form error for display
+    errors.form = errorMessage;
   } finally {
     isSubmitting.value = false;
   }
