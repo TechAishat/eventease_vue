@@ -1,6 +1,6 @@
 <template>
   <div class="app-shell">
-    <Header v-if="!hideChrome" />
+    <Header />
     <main>
       <div v-if="!isReady" class="app-loading" aria-live="polite">
         <div class="spinner" aria-label="Loading" />
@@ -8,19 +8,17 @@
       </div>
       <RouterView v-else />
     </main>
-    <Footer v-if="!hideChrome" />
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import { computed, onMounted } from 'vue';
-import { RouterView, useRoute } from 'vue-router';
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
 import { useAuthStore } from '@/stores/auth.js';
 import { useTicketStore } from '@/stores/tickets.js';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
-const route = useRoute();
 const authStore = useAuthStore();
 const ticketStore = useTicketStore();
 
@@ -29,6 +27,5 @@ onMounted(() => {
   ticketStore.hydrate();
 });
 
-const hideChrome = computed(() => route.path.startsWith('/auth'));
 const isReady = computed(() => authStore.isHydrated && ticketStore.isHydrated);
 </script>

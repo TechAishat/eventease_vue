@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="landing-page">
+    <Header />
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-content">
         <div class="hero-copy">
@@ -7,7 +8,7 @@
             Unlock Seamless Access With EventEase.
           </h1>
           <p class="hero-description">
-            Experience hassle-free user authentication and top-notch security.
+            Experience hassle-free user authentication and top-notch security. 
             Our innovative session management ensures a smooth start for everyone.
           </p>
           <div class="hero-actions">
@@ -55,30 +56,53 @@
             Why teams choose EventEase
           </h2>
           <p style="color: #4a5272">
-              Experience seamless access with EventEase, tailored for your team's needs
+            Experience seamless access with EventEase, tailored for your team's needs
           </p>
         </div>
         <div class="features-grid">
           <article class="card feature-card">
-            <span class="feature-icon" aria-hidden="true">⚡</span>
+            <span class="feature-icon" aria-hidden="true">
+              ⚡
+            </span>
             <h3>Streamlined User Access</h3>
-            <p>Experience seamless access with EventEase, tailored for your team's needs</p>
+            <p>Quickly authenticate users and maintain security with efficient session management techniques.</p>
           </article>
           <article class="card feature-card">
-            <span class="feature-icon" aria-hidden="true">📊</span>
+            <span class="feature-icon" aria-hidden="true">
+              📊
+            </span>
             <h3>Comprehensive Analytics Dashboard</h3>
             <p>Track the total number of tickets, including open and resolved issues, with dynamic updates for immediate insights.</p>
           </article>
           <article class="card feature-card">
-            <span class="feature-icon" aria-hidden="true">🛠️</span>
+            <span class="feature-icon" aria-hidden="true">
+              🛠️
+            </span>
             <h3>Enhanced Ticket Management</h3>
             <p>Effortlessly create, edit, or close tickets with user-friendly validation prompts and timely notifications.</p>
           </article>
         </div>
       </div>
     </section>
+  
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+
+export default {
+  name: 'LandingPage',
+  components: {
+    Header,
+    Footer
+  }
+}
+</script>
+
+
 
 <script setup>
 import { RouterLink } from 'vue-router';

@@ -1,3 +1,60 @@
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px; /* Updated to pill shape */
+  border: none;
+  cursor: pointer;
+  background: #4f5dff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-secondary {
+  background: #fff;
+  border: .7px solid #4f5dff;
+  color: #4f5dff;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(79, 93, 255, 0.35);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary button hover state */
+.btn:not(.btn-secondary):hover {
+  background: #3a47d4;
+}
+
+/* Secondary button hover state */
+.btn-secondary:hover {
+  background: #f5f7ff;
+  border-color: #3a47d4;
+  color: #3a47d4;
+}
+
+/* App Shell */
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -147,6 +204,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  margin-bottom: 4rem;
 }
 
 .hero-media {

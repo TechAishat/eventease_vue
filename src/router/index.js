@@ -12,13 +12,13 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'landing',
+      component: Landing
+    },
+    {
+      path: '/',
       component: AppLayout,
       children: [
-        {
-          path: '',
-          name: 'landing',
-          component: Landing
-        },
         {
           path: 'auth/login',
           name: 'login',
