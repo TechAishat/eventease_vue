@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig(({ mode }) => ({
-  base: '/',
+  base: process.env.NODE_ENV === 'production' ? '/eventease_vue/' : '/',
   plugins: [
     vue({
       template: {
@@ -13,7 +13,8 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
-  publicDir: fileURLToPath(new URL('../assets', import.meta.url)),
+  // Update publicDir to be within the project directory
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
