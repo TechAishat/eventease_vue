@@ -7,12 +7,12 @@
       </RouterLink>
       <nav class="nav-links" aria-label="Primary navigation">
         <RouterLink to="/" :class="linkClasses('/')">Home</RouterLink>
-        <RouterLink to="/dashboard" :class="linkClasses('/dashboard')">Dashboard</RouterLink>
-        <RouterLink to="/tickets" :class="linkClasses('/tickets')">Tickets</RouterLink>
+        <RouterLink to="/app/dashboard" :class="linkClasses('/app/dashboard')">Dashboard</RouterLink>
+        <RouterLink to="/app/tickets" :class="linkClasses('/app/tickets')">Tickets</RouterLink>
         <button v-if="isAuthenticated" type="button" class="btn btn-secondary" @click="handleLogout">
           Logout
         </button>
-        <RouterLink v-else to="/auth/login" class="btn btn-secondary">Login</RouterLink>
+        <RouterLink v-else to="/app/login" class="btn btn-secondary">Login</RouterLink>
       </nav>
     </div>
   </header>

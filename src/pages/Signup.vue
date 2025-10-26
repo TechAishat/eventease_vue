@@ -64,7 +64,7 @@
       </form>
       <p class="auth-switch">
         Already have an account?
-        <RouterLink to="/auth/login">Sign in</RouterLink>
+        <RouterLink to="/app/login">Sign in</RouterLink>
       </p>
     </div>
   </div>
@@ -90,15 +90,6 @@ const router = useRouter();
 const authStore = useAuthStore();
 const toastStore = useToastStore();
 
-watch(
-  () => authStore.sessionToken,
-  (token) => {
-    if (token) {
-      router.replace('/dashboard');
-    }
-  },
-  { immediate: true }
-);
 
 const validate = () => {
   const nextErrors = {};
@@ -136,8 +127,16 @@ const handleSubmit = async () => {
       email: form.email.trim(),
       password: form.password
     });
-    toastStore.showSuccess('Account created', 'Welcome aboard! You are now signed in.');
-    router.replace('/dashboard');
+    
+    // Show success message
+    toastStore.add({
+      type: 'success',
+      message: 'Account created successfully! Welcome aboard!',
+      duration: 3000
+    });
+    
+    // Redirect to dashboard
+    router.push('/app/dashboard');
   } catch (error) {
     toastStore.showError('Signup failed', error.message ?? 'Unable to create account.');
   } finally {

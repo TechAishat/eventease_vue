@@ -12,10 +12,10 @@
             Our innovative session management ensures a smooth start for everyone.
           </p>
           <div class="hero-actions">
-            <RouterLink to="/auth/signup" class="btn">
+            <RouterLink to="/app/signup" class="btn">
               Get Started
             </RouterLink>
-            <RouterLink to="/auth/login" class="btn btn-secondary">
+            <RouterLink to="/app/login" class="btn btn-secondary">
               Login
             </RouterLink>
           </div>
