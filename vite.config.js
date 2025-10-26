@@ -13,8 +13,8 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
-  // Update publicDir to be within the project directory
-  publicDir: 'public',
+  // Update publicDir to use the assets directory
+  publicDir: 'assets',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
